@@ -359,6 +359,27 @@ a.btn:hover{
 @media(max-width:600px){
     .voice-cards{grid-template-columns:1fr;}
 }
+/* ===== SNS链接样式 ===== */
+.sns-link-wrap{
+    margin-top:10px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+.sns-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:#4a8f6a;
+    text-decoration:none;
+    padding:6px 10px;
+    border:1px solid #d4ebe0;
+    border-radius:8px;
+    transition:0.2s;
+}
+.sns-link:hover{
+    background:#f0f7f3;
+}
 </style>
 </head>
 <body>
@@ -368,7 +389,7 @@ a.btn:hover{
         <span class="lang-text">JP</span>
     </button>
 </div>
-<!-- 右上角汉堡菜单【修复】 -->
+<!-- 右上角汉堡菜单 -->
 <div class="menu-btn-wrap">
     <button class="menu-btn" onclick="toggleMenu()">
         <span></span>
@@ -382,6 +403,7 @@ a.btn:hover{
         <a onclick="showPage('voice')">音源情報</a>
         <a onclick="showPage('works')">作品</a>
         <a onclick="showPage('rule')">利用規約</a>
+        <a onclick="showPage('sns')">SNS</a>
         <a onclick="showPage('notice')">お知らせ</a>
     </div>
 </div>
@@ -405,7 +427,7 @@ a.btn:hover{
     <div class="cn-content text-block">
         本网站是UTAU音源「骨鼠」的官方介绍页面，可通过菜单查看各项内容。
     </div>
-    <!-- ===== 新增：音源版本横向滑动（图片+名字一起滑动） ===== -->
+    <!-- 音源版本横向滑动卡片 -->
     <div class="version-scroll">
         <div class="version-card">
             <div class="version-img">
@@ -534,9 +556,9 @@ a.btn:hover{
                 </div>
             </div>
             <audio id="samplePlayer" class="sample-player" src="sample.mp3" preload="metadata" controls>
-            </audio>
+            
         </div>
-        <!-- 卡片二：新增 骨ネズミ-連単- 音源 -->
+        <!-- 卡片二：骨ネズミ-連単- 音源 -->
         <div class="voice-card">
             <div class="jp-content">
                 <div class="text-block">
@@ -572,11 +594,11 @@ a.btn:hover{
                 </div>
             </div>
             <audio id="samplePlayer2" class="sample-player" src="sam.mp3" preload="metadata" controls>
-            </audio>
+            
         </div>
     </div>
 </div>
-<!-- 作品：左右滑动图片，只有作品标题 -->
+<!-- 作品 -->
 <div class="box" id="works">
     <h2>作品</h2>
     <div class="works-scroll">
@@ -649,7 +671,40 @@ a.btn:hover{
         </div>
     </div>
 </div>
-<!-- 公告 -->
+<!-- ===== 独立社交账号页：只有这一节，干干净净 ===== -->
+<div class="box" id="sns">
+    <div class="jp-content">
+        <h2>SNS</h2>
+        <div class="text-block">
+            各種SNSアカウント：
+            <div class="sns-link-wrap">
+                <a href="https://xhslink.cn/o/7QCuAi8mYsK" target="_blank" class="sns-link">📕 小红书</a>
+                <a href="https://x.com/yin36562" target="_blank" class="sns-link">𝕏 Twitter</a>
+                <a href="https://v.douyin.com/AFQAsdoWOD0/" target="_blank" class="sns-link">🎵 抖音</a>
+                <a href="https://qm.qq.com/q/bQGaw13vhe" target="_blank" class="sns-link">💬 QQ</a>
+            </div>
+        </div>
+        <div class="text-block">
+            メール：<a href="mailto:fracture_112@foxmail.com" style="color:#4a8f6a;">fracture_112@foxmail.com</a>
+        </div>
+    </div>
+    <div class="cn-content">
+        <h2>社交账号</h2>
+        <div class="text-block">
+            各平台主页：
+            <div class="sns-link-wrap">
+                <a href="https://xhslink.cn/o/7QCuAi8mYsK" target="_blank" class="sns-link">📕 小红书</a>
+                <a href="https://x.com/yin36562" target="_blank" class="sns-link">𝕏 Twitter</a>
+                <a href="https://v.douyin.com/AFQAsdoWOD0/" target="_blank" class="sns-link">🎵 抖音</a>
+                <a href="https://qm.qq.com/q/bQGaw13vhe" target="_blank" class="sns-link">💬 QQ</a>
+            </div>
+        </div>
+        <div class="text-block">
+            邮箱：<a href="mailto:fracture_112@foxmail.com" style="color:#4a8f6a;">fracture_112@foxmail.com</a>
+        </div>
+    </div>
+</div>
+<!-- 公告页：恢复纯公告，只有日期通知 -->
 <div class="box" id="notice">
     <div class="jp-content">
         <h2>お知らせ</h2>
@@ -681,8 +736,8 @@ a.btn:hover{
 <script>
 // 语言切换
 let isJp = true;
-const menuTextJp = ["ホーム","プロフィール","キャラ設定","音源情報","作品","利用規約","お知らせ"];
-const menuTextCn = ["首页","角色档案","角色设定","音源信息","作品","使用规约","公告"];
+const menuTextJp = ["ホーム","プロフィール","キャラ設定","音源情報","作品","利用規約","SNS","お知らせ"];
+const menuTextCn = ["首页","角色档案","角色设定","音源信息","作品","使用规约","社交账号","公告"];
 const menuLinks = document.querySelectorAll("#menu a");
 function toggleLang(){
     isJp = !isJp;
@@ -728,7 +783,7 @@ document.addEventListener('click', function(e){
         document.getElementById('menu').style.display = 'none';
     }
 })
-// ===== 试听音频：页面内固定播放（支持两张卡片各自播放器） =====
+// 试听音频播放控制
 let samplePlaying = [false, false];
 function toggleSamplePlay(idx){
     const isSecond = (idx === 2);
@@ -737,14 +792,12 @@ function toggleSamplePlay(idx){
     const jpBtn = document.getElementById(isSecond ? "sampleBtnJp2" : "sampleBtnJp");
     const cnBtn = document.getElementById(isSecond ? "sampleBtnCn2" : "sampleBtnCn");
     if(samplePlaying[key]){
-        // 暂停并隐藏播放器
         player.pause();
         player.classList.remove("show");
         jpBtn.innerText = "サンプルを聴く";
         cnBtn.innerText = "试听样本";
         samplePlaying[key] = false;
     }else{
-        // 若另一张卡片正在播放，先停止它
         const otherKey = key === 0 ? 1 : 0;
         if(samplePlaying[otherKey]){
             const otherIsSecond = (otherKey === 1);
@@ -757,7 +810,6 @@ function toggleSamplePlay(idx){
             otherCn.innerText = "试听样本";
             samplePlaying[otherKey] = false;
         }
-        // 显示播放器并播放
         player.classList.add("show");
         player.play().catch(e=>{
             console.log("音频播放失败",e);
